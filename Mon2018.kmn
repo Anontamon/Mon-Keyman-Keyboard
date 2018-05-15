@@ -23,7 +23,7 @@ begin Unicode > use(Main)
 		        '=_\]' \
 		        '~' \
 		        'WEUI' \
-		        'B?'
+		        'B?/'
                 
  store(baseU)  u+1006 u+1010 u+1014 u+1019 u+1021 \
 		       u+1015 u+1000 u+105A u+101E u+1005 \
@@ -36,7 +36,7 @@ begin Unicode > use(Main)
 		       U+003D u+00D7 U+1051 u+1029 \
 		       u+100E \
 		       u+101D u+1023 u+1025 U+104E  \
-		       U+1050 U+104A  
+		       U+1050 U+104A U+104B 
                
                  
 store(addK) ',.]'
