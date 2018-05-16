@@ -1,0 +1,231 @@
+store(&VERSION) '9.0'
+NAME "Mon Keyboard"
+store(&Copyright) "© 2018 Anonta Mon (License: LGPL)"
+store( &Message ) "Keyboard for typing Mon with Unicode 5.1.0. "\
+"<http://www.unicode.org/versions/Unicode5.1.0/>. "\
+"This keyboard is freely redistributable under the terms of the GNU Lesser General Public License."
+c store(&Language) "nmw"
+
+store(&BITMAP) 'Mon.bmp'
+HOTKEY  "^+M"
+
+
+begin Unicode > use(Main)
+
+ store(baseK)   'qwrt' \
+		        'yop]\' \
+		        "asdfg" \
+		        "hkl;'" \
+		        "zxc" \
+		        "vbnm/" \
+		        '`~!@#$%' \
+		        '^&*()_+' \
+		        'QR"'
+                
+ store(baseU)  U+101E U+101D U+101B U+1010 \
+		       U+1022 U+1001 U+1015 U+1013 U+1011 \
+		       U+1021 U+1005 U+1012 U+1016 U+1002 \
+		       U+101F U+1000 U+101C U+100D U+104A \ 
+		       U+1007 U+1006 U+105A \
+		       U+1018 U+1017 U+1014 U+1019 U+105C \
+		       U+1020 U+103F U+100B U+1003 U+100C U+100F U+105B \
+		       U+1029 U+105D U+1034 '(' ')' U+1027 U+1023 \
+		       U+1009 U+100A U+104B   
+                 
+store(addK) 'y/^'
+store(addU) U+101A u+105C u+1029
+             
+store(numK)     '1234567890' 
+store(numU)     U+1041 U+1042 U+1043 U+1044 U+1045 \
+                U+1046 U+1047 U+1048 U+1049 U+1040                
+                
+store(aftereK)  '>.*<'
+store(aftereU)  U+102B U+102C U+1034 U+1038
+
+store (aaK)     '>.'
+store (aaU)     U+102B U+102C  
+
+store (lDotK)   '*'
+store (lDotU)   U+1034    
+
+store (visargaK) '<'
+store (visargaU) U+1038
+                      
+store(udia1K)    'iJI'
+store(udia1U)    U+102D U+102E U+1033
+
+store(udia2K)   'Y,'     
+store(udia2U)   U+1032 U+1036
+                  
+store(ldiaK)    'uU'
+store(ldiaU)    U+102F U+1030 
+
+store(asatK)    'j'
+store(asatU)    U+103A 
+
+
+store(consU)    u+1000 u+1001 u+1002 u+1003 u+105A u+1005 u+1006 u+1007 \
+		  	   	u+105B u+1009 u+100A u+100B u+100C u+100D u+100E u+100F \
+		  	   	u+1010 u+1011 u+1012 u+1013 u+1014 u+1015 u+1016 u+1017  \
+		  	   	u+1018 u+1019 u+101A u+101B u+101C u+101D u+101E u+101F  \
+		  	   	u+1020 u+105C u+1021 u+105D u+103F u+1029
+
+store(consK)	'kog@csxz'\
+                '%QR!#;|$'\
+                't\d]npfb'\
+                'vmyrlwqh'\
+                '`/a&~^'
+
+store(mediaK)   '{[HWMLN' 
+store(mediaU)   u+103B u+103C u+103E u+103D U+105F U+1060 U+105E
+
+store(yDiaK)    '{'
+store(yDiaU)    U+103B
+
+store(rDiaK)    '['
+store(rDiaU)    U+103C
+   
+store(wDiaK)    'W'
+store(wDiaU)    U+103D 
+
+store(hDiaK)    'H' 
+store(hDiaU)    U+103E
+
+store (mDiaK)   'M'
+store (mDiaU)   U+105F
+
+store (lDiaK)   'L'
+store (lDiaU)   U+1060
+
+store(nDiaK)    'N'
+store(nDiaU)    U+105E
+                
+store(filler)   U+200B 
+  
+
+store(vowelEK)  'e'
+store(vowelEU)  U+1031  
+
+store(allDiaU)  U+102F U+1030 U+102D U+102E U+1032 U+1036 u+1033 u+1034 u+1035
+store(firstDiaU)  U+102D U+102F U+1032
+store(secondDiaU)  U+102D U+1036 U+1037 U+102F    
+
+store(stackK)   'F'
+store(stackU)   U+1039
+
+group(Main) using keys 
++ any(vowelEK) > outs(filler) outs(vowelEU)
++ any(stackK) > outs(stackU)
+any(filler) U+1031 + any(consK) > index(consU, 3) U+1031
+U+1031 U+1039 + any(consK) > U+1039 index(consU,3) U+1031 
+U+1031 + any(mediaK) > index(mediaU, 2) U+1031
+U+1007 U+1031 + any(yDiaK) > U+105B U+1031 
+U+1007 + '{' > U+105B
+U+1025 + 'j' > U+1009 U+103A
+U+1025 + 'F' > U+1009 U+1039 
+U+1025 + '.' > U+1009 U+102C   
+
+c any(filler) U+1031 + any(accK) > U+100B U+1039 U+100C U+1031
+c any(filler) U+1031 + any(abbK) > U+100F U+1039 U+100D U+1031
+
++ any(addK)> index(addU,1)
++ any(numK) > index(numU, 1)
++ any(baseK) > index(baseU, 1) 
++ any(aftereK) > index(aftereU, 1) 
++ any(asatK) > outs(asatU)          
+
+c + '`' > dk(backquote)
+c dk(backquote) + any(baseK) > U+1039 index(baseu,2)
+
+
+c U+101E U+103C U+1031 U+102C + any(asatK) > U+102A
+U+1025 + 'J' > U+1026  
+any(ldiaU)+ any(udia1K) > index(udia1U, 2) context 
+any(udia2U)+ any(ldiaK)> index(ldiaU, 2) context
+any(udia2U)+ any(udia1K)> index(udia1U, 2) context
+c U+1037 + any(udia1K) > index(udia1U, 2) context
+c U+1037 + any(udia2K) > index(udia2U, 2) context
+c U+1037 + any(ldiaK) > index(ldiaU, 2) context
+U+1036 + 'Y'> U+1032 U+1036
+c U+1037 + any(aaK) > index(aaU, 2) context
+U+1038 + any(lDotK) > index(lDotU, 2) context 
+c U+1037 + any(asatK)> index(asatU,2) U+1037
+c U+103A + 'h' > U+1037 U+103A
+
+any(consU) U+103A + 'H' > index(consU, 1) U+103E U+103A
+any(consU) U+103E U+1031 + 'j' > index(consU, 1) U+103E U+103A U+1031
+any(consU) U+103A U+1031 + 'H' > index(consU, 1) U+103E U+103A U+1031
+U+102C U+103A + 'H' > U+102C U+103E U+103A 
+U+1031 + any(asatK)> index (asatU, 2) U+1031
+
++ any(ldiaK) > index(ldiaU, 1)
++ any(udia1K) > index(udia1U, 1)  
++ any(udia2K) > index(udia2U, 1)
+ 
+ 
+any(wDiaU) + any(yDiaK) > index(yDiaU, 2) context
+any(hDiaU) + any(yDiaK) > index(yDiaU, 2) context 
+any(wDiaU) + any(rDiaK) > index(rDiaU, 2) context
+any(hDiaU) + any(rDiaK) > index(rDiaU, 2) context 
+any(hDiaU) + any(wDiaK) > index(wDiaU, 2) context   
+
+any(wDiaU) any(hDiaU) + any(yDiaK) > index(yDiaU, 3) context
+any(wDiaU) any(hDiaU) + any(rDiaK) > index(rDiaU, 3) context  
+
+any(wDiaU) U+1031 + any(yDiaK) > index(yDiaU, 3) context
+any(hDiaU) U+1031 + any(yDiaK) > index(yDiaU, 3) context
+any(wDiaU) U+1031 + any(rDiaK) > index(rDiaU, 3) context
+any(hDiaU) U+1031 + any(rDiaK) > index(rDiaU, 3) context  
+any(hDiaU) U+1031 + any(wDiaK) > index(wDiaU, 3) context 
+
+any(wDiaU) any(hDiaU) U+1031 + any(yDiaK) > index(yDiaU, 4) context
+any(wDiaU) any(hDiaU) U+1031 + any(rDiaK) > index(rDiaU, 4) context  
+
++ any(mediaK) > index(mediaU, 1)
+
++'E' > U+1035 U+102F   
++'K' > U+1039 U+1000
++'O' > U+1039 U+1001 
++'G' > U+1039 U+1002 
++'C' > U+1039 U+105A
++'S' > U+1039 U+1005 
++'X' > U+1039 U+1006
++'Z' > U+1039 U+1007 
++':' > U+1039 U+100D 
++'T' > U+1039 U+1010
++'D' > U+1039 U+1012  
++'}' > U+1039 U+1013 
++'P' > U+1039 U+1015 
++'B' > U+1039 U+1017 
++'V' > U+1039 U+1018 
++'A' > U+1039 U+1021 
++'?' > U+1039 U+105C 
++'-' > U+1028 
++'=' > U+1025 
++'_' > U+1027 
++'+' > U+1023 
++'|' > U+100E 
+any(consU) U+1031 + 'K' > index(consU, 1) U+1039 U+1000 U+1031 
+any(consU) U+1031 + 'O' > index(consU, 1) U+1039 U+1001 U+1031
+any(consU) U+1031 + 'G' > index(consU, 1) U+1039 U+1002 U+1031
+any(consU) U+1031 + 'C' > index(consU, 1) U+1039 U+105A U+1031
+any(consU) U+1031 + 'S' > index(consU, 1) U+1039 U+1005 U+1031
+any(consU) U+1031 + 'X' > index(consU, 1) U+1039 U+1006 U+1031
+any(consU) U+1031 + 'Z' > index(consU, 1) U+1039 U+1007 U+1031
+any(consU) U+1031 + ':' > index(consU, 1) U+1039 U+100D U+1031
+any(consU) U+1031 + 'T' > index(consU, 1) U+1039 U+1010 U+1031
+any(consU) U+1031 + 'D' > index(consU, 1) U+1039 U+1012 U+1031 
+any(consU) U+1031 + '}' > index(consU, 1) U+1039 U+1013 U+1031
+any(consU) U+1031 + 'P' > index(consU, 1) U+1039 U+1015 U+1031
+any(consU) U+1031 + 'B' > index(consU, 1) U+1039 U+1017 U+1031
+any(consU) U+1031 + 'V' > index(consU, 1) U+1039 U+1018 U+1031
+any(consU) U+1031 + 'A' > index(consU, 1) U+1039 U+1021 U+1031
+any(consU) U+1031 + '?' > index(consU, 1) U+1039 U+105C U+1031
+         
+U+200B U+1031 + [K_BKSP] > nul
+any(baseU) U+1031 + [K_BKSP] > outs(filler) U+1031 
+any(mediaU) U+1031 + [K_BKSP]> U+1031
+
+U+1039 any(consU) U+1031 + [K_BKSP] > U+1039 outs(filler) U+1031
+U+1039 any(consU) + [K_BKSP] > nul     
+
